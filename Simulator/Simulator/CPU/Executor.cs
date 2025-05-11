@@ -11,10 +11,19 @@ public class Executor
 
     public void Execute(string line, int line_no)
     {
+        if (line.StartsWith(";") || string.IsNullOrWhiteSpace(line))
+        {
+            Console.WriteLine($"Skipping {line_no}: {line}");
+            return;
+        }
         Console.WriteLine($"Executing {line_no}: {line}");
+        
         
         // Usuwamy białe znaki i zamieniamy na wielkie litery dla spójności
         line = line.Trim().ToUpper();
+        
+        // Usuwamy komentarze
+        line = line.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries)[0];
         
         // Rozdzielamy linię na części: rozkaz i argumenty
         string[] parts = line.Split(new[] { ' ', ',' }, StringSplitOptions.RemoveEmptyEntries);
