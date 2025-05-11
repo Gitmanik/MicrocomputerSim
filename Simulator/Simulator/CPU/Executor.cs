@@ -14,6 +14,7 @@ public class Executor
         if (line.StartsWith(";") || string.IsNullOrWhiteSpace(line))
         {
             Console.WriteLine($"Skipping {line_no}: {line}");
+            Cpu.IP += 1;
             return;
         }
         Console.WriteLine($"Executing {line_no}: {line}");
@@ -57,5 +58,7 @@ public class Executor
             default:
                 throw new ArgumentException($"{line_no}: Unknown instruction: {instruction}");
         }
+        
+        Cpu.IP += 1;
     }
 }
