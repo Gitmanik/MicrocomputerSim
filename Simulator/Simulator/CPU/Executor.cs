@@ -25,6 +25,11 @@ public class Executor
         
         switch (instruction)
         {
+            case "INT":
+                if (parts.Length != 2)
+                    throw new ArgumentException($"{line_no}: Argument count invalid, expected 3, got {parts.Length}");
+                Cpu.HandleInt(parts[1]);
+                break;
             case "MOV":
                 if (parts.Length != 3)
                     throw new ArgumentException($"{line_no}: Argument count invalid, expected 3, got {parts.Length}");
