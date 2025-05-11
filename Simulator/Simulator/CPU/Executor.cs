@@ -1,0 +1,47 @@
+namespace Simulator;
+
+public class Executor
+{
+    public CPU Cpu { get; private set; }
+    
+    public Executor(CPU cpu)
+    {
+        Cpu = cpu;
+    }
+
+    public void Execute(string line, int line_no)
+    {
+        Console.WriteLine($"Executing {line_no}: {line}");
+        
+        // Usuwamy białe znaki i zamieniamy na wielkie litery dla spójności
+        line = line.Trim().ToUpper();
+        
+        // Rozdzielamy linię na części: rozkaz i argumenty
+        string[] parts = line.Split(new[] { ' ', ',' }, StringSplitOptions.RemoveEmptyEntries);
+        if (parts.Length < 1)
+            throw new ArgumentException($"Invalid line {line_no}: '{line}'");
+        
+        string instruction = parts[0];
+        
+        switch (instruction)
+        {
+            case "MOV":
+                if (parts.Length != 3)
+                    throw new ArgumentException($"{line_no}: Argument count invalid, expected 3, got {parts.Length}");
+                Cpu.HandleMov(parts[1], parts[2]);
+                break;
+            case "ADD":
+                if (parts.Length != 3)
+                    throw new ArgumentException($"{line_no}: Argument count invalid, expected 3, got {parts.Length}");
+                Cpu.HandleAdd(parts[1], parts[2]);
+                break;
+            case "SUB":
+                if (parts.Length != 3)
+                    throw new ArgumentException($"{line_no}: Argument count invalid, expected 3, got {parts.Length}");
+                Cpu.HandleSub(parts[1], parts[2]);
+                break;
+            default:
+                throw new ArgumentException($"{line_no}: Unknown instruction: {instruction}");
+        }
+    }
+}
