@@ -171,4 +171,16 @@ public class CPU
     {
         throw new NotImplementedException();
     }
+
+    public void Dump()
+    {
+        Console.WriteLine("=== CPU Registers ===");
+        Console.WriteLine($"AX: 0x{AX:X4} (AH: 0x{AH:X2}, AL: 0x{AL:X2})");
+        Console.WriteLine($"BX: 0x{BX:X4} (BH: 0x{BH:X2}, BL: 0x{BL:X2})");
+        Console.WriteLine($"CX: 0x{CX:X4} (CH: 0x{CH:X2}, CL: 0x{CL:X2})");
+        Console.WriteLine($"DX: 0x{DX:X4} (DH: 0x{DH:X2}, DL: 0x{DL:X2})");
+        Console.WriteLine($"IP: 0x{IP:X4}");
+        Console.WriteLine($"SP: 0x{SP:X4}");
+        Console.WriteLine("=================");
+    }
 }
