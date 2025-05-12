@@ -166,12 +166,7 @@ public class CPU
                 throw new ArgumentException($"Invalid register: {register}");
         }
     }
-
-    public void HandleInt(string part)
-    {
-        throw new NotImplementedException();
-    }
-
+    
     public void Dump()
     {
         Console.WriteLine("=== CPU Registers ===");
