@@ -54,10 +54,13 @@ public partial class MainWindow : Window
             var line = _programLines[_cpu.IP];
             _executor.Execute(line);
             UpdateCpuState();
+            ConsoleOutput.Text = $"Executed {line}\n";
+            ConsoleOutput.Foreground = Brushes.Green;
         }
         catch (Exception ex)
         {
-            ConsoleOutput.Text += $"Error: {ex.Message}\n";
+            ConsoleOutput.Text = $"Error: {ex.Message}\n";
+            ConsoleOutput.Foreground = Brushes.Red;
         }
     }
 
