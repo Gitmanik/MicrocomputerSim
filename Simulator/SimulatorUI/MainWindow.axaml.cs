@@ -15,6 +15,8 @@ public partial class MainWindow : Window
         InitializeComponent();
         _cpu = new CPU();
         _executor = new Executor(_cpu);
+        _programLines = new string[0];
+        CodeEditor.Text = "";
     }
 
     // Kliknięcie przycisku Run
