@@ -97,7 +97,10 @@ public partial class MainWindow : Window
         var result = await dialog.ShowAsync(this);
         if (result != null && result.Length > 0)
         {
-            CodeEditor.Text = System.IO.File.ReadAllText(result[0]);
+            CodeEditor.Text = await System.IO.File.ReadAllTextAsync(result[0]);
+            _cpu.Reset();
+            ConsoleOutput.Text = "";
+            UpdateCpuState();
         }
     }
 
