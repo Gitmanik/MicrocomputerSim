@@ -43,7 +43,7 @@ public partial class MainWindow : Window
     // Wczytanie i parsowanie programu
     private void LoadProgram()
     {
-        _programLines = CodeEditor.Text.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+        _programLines = CodeEditor.Text.Replace("\r", "").Split(new[] { Environment.NewLine }, StringSplitOptions.None);
     }
 
     // Wykonanie bieżącej linii kodu
