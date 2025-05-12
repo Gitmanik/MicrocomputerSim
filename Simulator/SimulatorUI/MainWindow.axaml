@@ -14,8 +14,34 @@
       <TextBlock Grid.Row="0" Text="Program Code" FontWeight="Bold" Margin="10" 
                  HorizontalAlignment="Center" />
       <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
-        <TextBox Name="CodeEditor" AcceptsReturn="True" FontFamily="Consolas" FontSize="14"
-                 HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        <Grid>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" /> <!-- Kolumna do numeracji -->
+            <ColumnDefinition Width="*" />   <!-- Kolumna dla tekstu -->
+          </Grid.ColumnDefinitions>
+            <TextBlock Name="LineNumbers"
+                       TextWrapping="NoWrap"
+                       VerticalAlignment="Top"
+                       Margin="0" 
+                       Padding="5,2"
+                       FontFamily="Consolas"
+                       FontSize="14"
+                       LineHeight="18"
+                       Background="#f4f4f4"
+                       Foreground="#666"
+                       TextAlignment="Right" />
+            <TextBox Name="CodeEditor"
+                     Grid.Column="1"
+                     TextWrapping="Wrap"
+                     AcceptsReturn="True"
+                     Margin="0"
+                     Padding="5,2"
+                     FontFamily="Consolas"
+                     FontSize="14"
+                     LineHeight="18"
+                     VerticalAlignment="Stretch"
+                     TextChanged="CodeEditor_TextChanged" />
+        </Grid>
       </ScrollViewer>
     </Grid>
 

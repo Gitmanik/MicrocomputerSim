@@ -1,5 +1,8 @@
 using System;
+using System.Linq;
 using Avalonia.Controls;
+using Avalonia.Interactivity;
+using Avalonia.Media;
 using Simulator;
 
 namespace SimulatorUI;
@@ -72,6 +75,7 @@ public partial class MainWindow : Window
         CxValue.Text = _cpu.CX.ToString("X4");
         DxValue.Text = _cpu.DX.ToString("X4");
         IpValue.Text = _cpu.IP.ToString("X4");
+        CodeEditor_TextChanged(null, null);
     }
 
     // Zapis programu do pliku
@@ -111,4 +115,16 @@ public partial class MainWindow : Window
         ConsoleOutput.Text = "";
     }
     
+    private void CodeEditor_TextChanged(object? sender, RoutedEventArgs e)
+    {
+        // Liczba linii w `TextBox` (liczone na podstawie wierszy tekstu)
+        var lineCount = CodeEditor.Text.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None).Length;
+
+        // Tworzenie ciągu z numerami linii
+        var lineNumbers = string.Join(Environment.NewLine, Enumerable.Range(1, lineCount)
+            .Select(i => i == _cpu.IP ? ">" : i.ToString()));
+        
+        // Wyświetlanie numerów linii w `TextBlock`
+        LineNumbers.Text = lineNumbers;
+    }
 }
