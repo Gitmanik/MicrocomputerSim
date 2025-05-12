@@ -20,6 +20,7 @@ public partial class MainWindow : Window
         _executor = new Executor(_cpu);
         _programLines = new string[0];
         CodeEditor.Text = "";
+        UpdateCpuState();
     }
 
     // Kliknięcie przycisku Run
@@ -70,11 +71,12 @@ public partial class MainWindow : Window
     // Aktualizacja wartości rejestrów w UI
     private void UpdateCpuState()
     {
-        AxValue.Text = _cpu.AX.ToString("X4");
-        BxValue.Text = _cpu.BX.ToString("X4");
-        CxValue.Text = _cpu.CX.ToString("X4");
-        DxValue.Text = _cpu.DX.ToString("X4");
+        AxValue.Text = $"0x{_cpu.AX:X4} (AH: 0x{_cpu.AH:X2}, AL: 0x{_cpu.AL:X2})";
+        BxValue.Text = $"0x{_cpu.BX:X4} (BH: 0x{_cpu.BH:X2}, BL: 0x{_cpu.BL:X2})";
+        CxValue.Text = $"0x{_cpu.CX:X4} (CH: 0x{_cpu.CH:X2}, CL: 0x{_cpu.CL:X2})";
+        DxValue.Text = $"0x{_cpu.DX:X4} (DH: 0x{_cpu.DH:X2}, DL: 0x{_cpu.DL:X2})";
         IpValue.Text = _cpu.IP.ToString("X4");
+        SpValue.Text = _cpu.SP.ToString("X4");
         CodeEditor_TextChanged(null, null);
     }
 
