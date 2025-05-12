@@ -1,0 +1,69 @@
+<Window xmlns="https://github.com/avaloniaui" 
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+        x:Class="SimulatorUI.MainWindow"
+        Title="Program Simulator" Width="800" Height="600">
+  <Grid Margin="10">
+    <!-- Układ z dwiema kolumnami -->
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="*" />
+      <ColumnDefinition Width="*" />
+    </Grid.ColumnDefinitions>
+
+    <!-- Panel Edytora kodu -->
+    <Grid Grid.Column="0" Margin="10" RowDefinitions="Auto,*">
+      <TextBlock Grid.Row="0" Text="Program Code" FontWeight="Bold" Margin="10" 
+                 HorizontalAlignment="Center" />
+      <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+        <TextBox Name="CodeEditor" AcceptsReturn="True" FontFamily="Consolas" FontSize="14"
+                 HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+      </ScrollViewer>
+    </Grid>
+
+    <!-- Panel informacji i konsoli -->
+    <Grid Grid.Column="1" Margin="10" RowDefinitions="2*,*,*">
+      
+      <!-- Informacje o stanie CPU -->
+      <Grid Margin="10" RowDefinitions="*,Auto">
+        <TextBlock Text="CPU State" FontWeight="Bold" Margin="10" 
+                   HorizontalAlignment="Center" />
+        <Grid Grid.Row="1">
+          <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+          </Grid.RowDefinitions>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="2*" />
+          </Grid.ColumnDefinitions>
+          <TextBlock Text="AX:" Grid.Row="0" Grid.Column="0" Margin="5" />
+          <TextBlock Name="AxValue" Text="0000" Grid.Row="0" Grid.Column="1" Margin="5" />
+          <TextBlock Text="BX:" Grid.Row="1" Grid.Column="0" Margin="5" />
+          <TextBlock Name="BxValue" Text="0000" Grid.Row="1" Grid.Column="1" Margin="5" />
+          <TextBlock Text="CX:" Grid.Row="2" Grid.Column="0" Margin="5" />
+          <TextBlock Name="CxValue" Text="0000" Grid.Row="2" Grid.Column="1" Margin="5" />
+          <TextBlock Text="DX:" Grid.Row="3" Grid.Column="0" Margin="5" />
+          <TextBlock Name="DxValue" Text="0000" Grid.Row="3" Grid.Column="1" Margin="5" />
+          <TextBlock Text="IP:" Grid.Row="4" Grid.Column="0" Margin="5" />
+          <TextBlock Name="IpValue" Text="0000" Grid.Row="4" Grid.Column="1" Margin="5" />
+          <TextBlock Text="SP:" Grid.Row="5" Grid.Column="0" Margin="5" />
+          <TextBlock Name="SpValue" Text="0000" Grid.Row="5" Grid.Column="1" Margin="5" />
+        </Grid>
+      </Grid>
+
+      <TextBlock Name="ConsoleOutput" Grid.Row="2">
+      </TextBlock>
+      
+      <!-- Przyciski zapisu i wczytywania -->
+      <Grid Grid.Row="3" ColumnDefinitions="*,*" RowDefinitions="*,*" HorizontalAlignment="Stretch" Margin="10">
+        <Button Grid.Column="0"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Name="SaveButton" Content="Save Program" HorizontalAlignment="Stretch" Click="OnSaveClicked" Margin="5" />
+        <Button Grid.Column="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Name="LoadButton" Content="Load Program" HorizontalAlignment="Stretch" Click="OnLoadClicked" Margin="5" />
+        <Button Grid.Row="1" Grid.Column="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Name="RunButton" Content="Run" HorizontalAlignment="Stretch" Click="OnRunClicked" Margin="5" />
+        <Button Grid.Row="1" Grid.Column="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Name="StepButton" Content="Step" HorizontalAlignment="Stretch" Click="OnStepClicked" Margin="5" />
+      </Grid>
+    </Grid>
+  </Grid>
+</Window>
