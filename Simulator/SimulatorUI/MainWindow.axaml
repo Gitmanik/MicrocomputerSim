@@ -58,11 +58,17 @@
       </TextBlock>
       
       <!-- Przyciski zapisu i wczytywania -->
-      <Grid Grid.Row="3" ColumnDefinitions="*,*" RowDefinitions="*,*" HorizontalAlignment="Stretch" Margin="10">
-        <Button Grid.Column="0"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Name="SaveButton" Content="Save Program" HorizontalAlignment="Stretch" Click="OnSaveClicked" Margin="5" />
-        <Button Grid.Column="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Name="LoadButton" Content="Load Program" HorizontalAlignment="Stretch" Click="OnLoadClicked" Margin="5" />
-        <Button Grid.Row="1" Grid.Column="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Name="RunButton" Content="Run" HorizontalAlignment="Stretch" Click="OnRunClicked" Margin="5" />
-        <Button Grid.Row="1" Grid.Column="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Name="StepButton" Content="Step" HorizontalAlignment="Stretch" Click="OnStepClicked" Margin="5" />
+      
+      <Grid Grid.Row="2" ColumnDefinitions="*" RowDefinitions="*,*" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="10">
+        <Grid Grid.Row="0" ColumnDefinitions="*,*" HorizontalAlignment="Stretch" Margin="10">
+          <Button Grid.Column="0"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Name="SaveButton" Content="Save Program" HorizontalAlignment="Stretch" Click="OnSaveClicked" Margin="5" />
+          <Button Grid.Column="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Name="LoadButton" Content="Load Program" HorizontalAlignment="Stretch" Click="OnLoadClicked" Margin="5" />
+        </Grid>
+        <Grid Grid.Row="1" ColumnDefinitions="*,*,*" HorizontalAlignment="Stretch" Margin="10">
+          <Button Grid.Row="0" Grid.Column="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Name="ResetButton" Content="Reset" HorizontalAlignment="Stretch" Click="OnResetClicked" Margin="5" />
+          <Button Grid.Row="0" Grid.Column="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Name="RunButton" Content="Run" HorizontalAlignment="Stretch" Click="OnRunClicked" Margin="5" />
+          <Button Grid.Row="0" Grid.Column="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Name="StepButton" Content="Step" HorizontalAlignment="Stretch" Click="OnStepClicked" Margin="5" />
+        </Grid>
       </Grid>
     </Grid>
   </Grid>

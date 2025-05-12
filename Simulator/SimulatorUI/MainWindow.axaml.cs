@@ -9,23 +9,20 @@ public partial class MainWindow : Window
     private readonly CPU _cpu;
     private readonly Executor _executor;
     private string[] _programLines;
-    private int _currentLine;
 
     public MainWindow()
     {
         InitializeComponent();
         _cpu = new CPU();
         _executor = new Executor(_cpu);
-        _currentLine = 0;
     }
 
     // Kliknięcie przycisku Run
     private void OnRunClicked(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
     {
         LoadProgram();
-        _currentLine = 0;
         _cpu.Reset();
-        while (_currentLine < _programLines.Length)
+        while (_cpu.IP < _programLines.Length)
         {
             ExecuteCurrentLine();
         }
@@ -35,7 +32,7 @@ public partial class MainWindow : Window
     private void OnStepClicked(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
     {
         LoadProgram();
-        if (_currentLine < _programLines.Length)
+        if (_cpu.IP < _programLines.Length)
         {
             ExecuteCurrentLine();
         }
@@ -52,10 +49,9 @@ public partial class MainWindow : Window
     {
         try
         {
-            var line = _programLines[_currentLine];
+            var line = _programLines[_cpu.IP];
             _executor.Execute(line);
             UpdateCpuState();
-            _currentLine++;
         }
         catch (Exception ex)
         {
@@ -99,4 +95,12 @@ public partial class MainWindow : Window
             CodeEditor.Text = System.IO.File.ReadAllText(result[0]);
         }
     }
+
+    private void OnResetClicked(object? sender, RoutedEventArgs e)
+    {
+        _cpu.Reset();
+        UpdateCpuState();
+        ConsoleOutput.Text = "";
+    }
+    
 }
