@@ -178,4 +178,14 @@ public class CPU
         Console.WriteLine($"SP: 0x{SP:X4}");
         Console.WriteLine("=================");
     }
+
+    public void Reset()
+    {
+        AX = 0;
+        BX = 0;
+        CX = 0;
+        DX = 0;
+        IP = 0;
+        SP = 0;
+    }
 }
